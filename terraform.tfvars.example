@@ -1,0 +1,13 @@
+region = "us-west-1"
+
+aws_access_key = ""
+aws_secret_key = ""
+
+consul_ami = ""
+statsd_ami = ""
+grafana_ami = ""
+influx_ami = ""
+rabbitmq_ami = ""
+goodtimes_ami = ""
+
+key_name = ""
