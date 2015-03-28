@@ -31,3 +31,9 @@ The name you select for terraform remote indicates which live cluster
 you will modify. You should test all infrastructure changes on
 `looprecur/goodtimes-dev` and only later modify `looprecur/goodtimes`
 if everything is good.
+
+### Goodtimes machine
+
+To build the virtual machine for Wiggum+scheduler+inquisitor copy
+`packer/goodtimes.json` into the microservice-template and use
+Packer. See the readme in that repo for more instructions.
