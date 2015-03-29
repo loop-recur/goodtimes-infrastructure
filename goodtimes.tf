@@ -25,3 +25,15 @@ resource "aws_instance" "goodtimes" {
     key_file = "~/.ssh/terraform.pem"
   }
 }
+
+resource "aws_route53_zone" "primary" {
+  name = "goodtimesbot.com"
+}
+
+resource "aws_route53_record" "goodtimes" {
+  zone_id = "${aws_route53_zone.primary.zone_id}"
+  name = "goodtimesbot.com"
+  type = "A"
+  ttl = "300"
+  records = ["${aws_instance.goodtimes.public_ip}"]
+}
