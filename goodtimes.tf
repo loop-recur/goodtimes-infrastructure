@@ -17,8 +17,7 @@ resource "aws_instance" "goodtimes" {
   subnet_id = "${module.core_vpc.public_subnet_id}"
 
   ami = "${var.goodtimes_ami}"
-  security_groups = ["${module.core_vpc.sg_public_ssh_id}"
-                    ,"${aws_security_group.goodtimes.id}"]
+  security_groups = ["${aws_security_group.goodtimes.id}"]
 
   connection {
     user = "ec2-user"
