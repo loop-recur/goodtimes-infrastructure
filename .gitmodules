@@ -1,0 +1,42 @@
+[submodule "packer/cookbooks/consul"]
+	path = packer/cookbooks/consul
+	url = https://github.com/johnbellone/consul-cookbook
+[submodule "packer/cookbooks/collectd"]
+	path = packer/cookbooks/collectd
+	url = https://github.com/hectcastro/chef-collectd.git
+[submodule "packer/cookbooks/dnsmasq"]
+	path = packer/cookbooks/dnsmasq
+	url = https://github.com/hw-cookbooks/dnsmasq.git
+[submodule "packer/cookbooks/golang"]
+	path = packer/cookbooks/golang
+	url = https://github.com/NOX73/chef-golang.git
+[submodule "packer/cookbooks/build-essential"]
+	path = packer/cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "packer/cookbooks/libarchive"]
+	path = packer/cookbooks/libarchive
+	url = https://github.com/reset/libarchive-cookbook.git
+[submodule "packer/cookbooks/apt"]
+	path = packer/cookbooks/apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "packer/cookbooks/runit"]
+	path = packer/cookbooks/runit
+	url = https://github.com/hw-cookbooks/runit.git
+[submodule "packer/cookbooks/packagecloud"]
+	path = packer/cookbooks/packagecloud
+	url = https://github.com/computology/packagecloud-cookbook.git
+[submodule "packer/cookbooks/yum-repoforge"]
+	path = packer/cookbooks/yum-repoforge
+	url = https://github.com/chef-cookbooks/yum-repoforge.git
+[submodule "packer/cookbooks/yum"]
+	path = packer/cookbooks/yum
+	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "packer/cookbooks/yum-epel"]
+	path = packer/cookbooks/yum-epel
+	url = https://github.com/opscode-cookbooks/yum-epel.git
+[submodule "packer/cookbooks/hosts_file"]
+	path = packer/cookbooks/hosts_file
+	url = https://github.com/hw-cookbooks/hosts_file.git
+[submodule "packer/cookbooks/chef-provisioning"]
+	path = packer/cookbooks/chef-provisioning
+	url = https://github.com/chef/chef-provisioning.git
