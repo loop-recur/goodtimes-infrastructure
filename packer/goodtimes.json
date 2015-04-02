@@ -10,89 +10,39 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-west-1",
-    "source_ami": "ami-4b6f650e",
-    "instance_type": "t2.micro",
+    "source_ami": "ami-3549a971",
+    "instance_type": "t2.small",
     "ssh_username": "ec2-user",
     "ami_name": "goodtimes {{timestamp}}",
     "ami_groups": ["all"]
   }],
   "provisioners": [{
-    "type": "chef-solo",
-    "install_command": "curl -L https://www.opscode.com/chef/install.sh | {{if .Sudo}}sudo{{end}} bash /dev/stdin -v 11",
-    "cookbook_paths": ["cookbooks"],
-    "run_list": [
-      "recipe[consul]",
-      "recipe[collectd]",
-      "recipe[collectd::attribute_driven]",
-      "recipe[dnsmasq::dns]"
-    ],
-    "json": {
-      "consul": {
-        "service_mode": "client",
-        "retry_on_join": true,
-        "node_name": "goodtimes",
-        "servers": ["10.0.1.100", "10.0.1.101", "10.0.1.102"]
-      },
-      "collectd": {
-        "url": "https://s3.amazonaws.com/collectd-5.4.1/collectd-5.4.1.tar.gz",
-        "graphite_ipaddress": "influxdb.node.consul",
-        "plugins": {
-          "syslog": {
-            "config": { "LogLevel": "Info" }
-          },
-          "disk": { },
-          "swap": { },
-          "memory": { },
-          "cpu": { },
-          "interface": {
-            "config": { "Interface": "lo", "IgnoreSelected": true }
-          },
-          "df": {
-            "config": {
-              "ReportReserved": false,
-              "FSType": [ "proc", "sysfs", "fusectl", "debugfs", "devtmpfs", "devpts", "tmpfs" ],
-              "IgnoreSelected": true
-            }
-          },
-          "write_graphite": {
-            "config": {
-              "Prefix": "collectd.goodtimes."
-            }
-          }
-        }
-      },
-      "dnsmasq": {
-        "dns": {
-          "server": "/consul/127.0.0.1#8600"
-        }
-      }
-    }
-  }, {
     "type": "file",
-    "source": "sources/network",
-    "destination": "/tmp/network"
+    "source": "sources/keys/",
+    "destination": "/tmp/"
   }, {
     "type": "shell",
     "inline": [
-      "sudo sh -c 'echo conf-dir=/etc/dnsmasq.d >> /etc/dnsmasq.conf'",
-      "sudo sh -c 'echo \"prepend domain-name-servers 127.0.0.1;\" >> /etc/dhcp/dhclient.conf'",
-      "sudo cp /tmp/network /etc/sysconfig/network",
-      "sudo sh -c 'echo \"127.0.0.1 self self.localdomain\" >> /etc/hosts'"
+      "cp /tmp/deploy-* $HOME/.ssh"
     ]
   }, {
     "type": "shell",
     "inline": [
-      "curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh | sudo bash /dev/stdin",
-      "export AWS_ACCESS_KEY_ID={{user `aws_access_key`}}",
-      "export AWS_SECRET_ACCESS_KEY={{user `aws_secret_key`}}",
+      "export HALCYON_AWS_ACCESS_KEY_ID={{user `aws_access_key`}}",
+      "export HALCYON_AWS_SECRET_ACCESS_KEY={{user `aws_secret_key`}}",
+      "export HALCYON_S3_ENDPOINT=s3-us-west-1.amazonaws.com",
       "export HALCYON_S3_BUCKET=goodtimes-builds",
-      "sudo -E /app/halcyon/halcyon install --purge-cache https://github.com/loop-recur/goodtimes-scheduler.git",
-      "sudo -E /app/halcyon/halcyon install --purge-cache https://github.com/loop-recur/goodtimes-inquisitor.git",
-      "sudo -E /app/halcyon/halcyon install --purge-cache https://github.com/loop-recur/goodtimes-bot.git",
+      "eval `ssh-agent`",
+      "ssh-add $HOME/.ssh/deploy-*",
+      "sudo sh -c 'echo -e \"Host *\\n\\tStrictHostKeyChecking no\\n\" >> ~/.ssh/config'",
+      "sudo -E /app/halcyon/halcyon install git@github.com:loop-recur/goodtimes-scheduler.git",
+      "sudo -E /app/halcyon/halcyon install git@github.com:loop-recur/goodtimes-inquisitor.git",
+      "sudo -E /app/halcyon/halcyon install git@github.com:loop-recur/goodtimes-wiggum.git",
+      "sudo -E /app/halcyon/halcyon install https://github.com/begriffs/postgrest",
       "sudo sh -c 'echo -e \"#!/bin/sh\n/app/bin/goodtimes-scheduler\n\" > /etc/cron.daily/goodtimes-scheduler'",
       "sudo chmod a+x /etc/cron.daily/goodtimes-scheduler",
       "sudo sh -c 'echo \"/app/bin/goodtimes-inquisitor &\" >> /etc/rc.local'",
-      "sudo sh -c 'echo \"/app/bin/goodtimes-bot &\" >> /etc/rc.local'"
+      "sudo sh -c 'echo \"/app/bin/goodtimes-wiggum &\" >> /etc/rc.local'"
     ]
   }]
 }
