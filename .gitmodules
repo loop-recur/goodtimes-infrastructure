@@ -40,3 +40,6 @@
 [submodule "packer/cookbooks/chef-provisioning"]
 	path = packer/cookbooks/chef-provisioning
 	url = https://github.com/chef/chef-provisioning.git
+[submodule "packer/cookbooks/nginx"]
+	path = packer/cookbooks/nginx
+	url = https://github.com/miketheman/nginx.git

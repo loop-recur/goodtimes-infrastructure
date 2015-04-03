@@ -24,7 +24,8 @@
       "recipe[consul::default]",
       "recipe[collectd]",
       "recipe[collectd::attribute_driven]",
-      "recipe[dnsmasq::dns]"
+      "recipe[dnsmasq::dns]",
+      "recipe[nginx::default]"
     ],
     "json": {
       "consul": {
