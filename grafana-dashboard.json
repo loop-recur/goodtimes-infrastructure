@@ -1,0 +1,503 @@
+{
+  "id": null,
+  "title": "goodtimes",
+  "originalTitle": "goodtimes",
+  "tags": [],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": false,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "title": "test",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "id": 4,
+          "span": 12,
+          "type": "graph",
+          "x-axis": true,
+          "y-axis": true,
+          "scale": 1,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "max": null,
+            "min": null,
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "resolution": 100,
+          "lines": true,
+          "fill": 1,
+          "linewidth": 2,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": true,
+          "spyable": true,
+          "options": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "interactive": true,
+          "legend_counts": true,
+          "timezone": "browser",
+          "percentage": false,
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "query_as_alias": true,
+            "shared": false
+          },
+          "targets": [
+            {
+              "target": "randomWalk('random walk')",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.initial_startup",
+              "query": "select count(value) from \"gt.sched.initial_startup\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.rabbitmq_failures",
+              "query": "select count(value) from \"gt.sched.rabbitmq_failures\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.rabbitmq_open_connection",
+              "query": "select count(value) from \"gt.sched.rabbitmq_open_connection\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.rabbitmq_declare_queue",
+              "query": "select count(value) from \"gt.sched.rabbitmq_declare_queue\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.num_loaded_accounts",
+              "query": "select count(value) from \"gt.sched.num_loaded_accounts\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.sched.num_loaded_respondents",
+              "query": "select count(value) from \"gt.sched.num_loaded_respondents\" where $timeFilter group by time($interval) order asc"
+            }
+          ],
+          "aliasColors": {},
+          "aliasYAxis": {},
+          "title": "Scheduler",
+          "datasource": "graphite",
+          "renderer": "flot",
+          "annotate": {
+            "enable": false
+          },
+          "seriesOverrides": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "title": "New row",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Inquisitor",
+          "error": false,
+          "span": 12,
+          "editable": true,
+          "type": "graph",
+          "id": 5,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.rabbitmq_open_connection",
+              "query": "select count(value) from \"gt.inquisitor.rabbitmq_open_connection\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.rabbitmq_declare_queue",
+              "query": "select count(value) from \"gt.inquisitor.rabbitmq_declare_queue\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.cleanup_recover_messages",
+              "query": "select count(value) from \"gt.inquisitor.cleanup_recover_messages\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.initial_startup",
+              "query": "select count(value) from \"gt.inquisitor.initial_startup\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.list_series_result",
+              "query": "select count(value) from \"gt.inquisitor.list_series_result\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_received",
+              "query": "select count(value) from \"gt.inquisitor.message_received\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_parse_failure",
+              "query": "select count(value) from \"gt.inquisitor.message_parse_failure\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_parsed",
+              "query": "select count(value) from \"gt.inquisitor.message_parsed\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_failed_parse_time_failure",
+              "query": "select count(value) from \"gt.inquisitor.message_failed_parse_time_failure\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_sleep",
+              "query": "select count(value) from \"gt.inquisitor.message_sleep\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_solicited",
+              "query": "select count(value) from \"gt.inquisitor.message_solicited\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_ack",
+              "query": "select count(value) from \"gt.inquisitor.message_ack\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_failed",
+              "query": "select count(value) from \"gt.inquisitor.message_failed\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "count",
+              "column": "value",
+              "series": "gt.inquisitor.message_expired",
+              "query": "select count(value) from \"gt.inquisitor.message_expired\" where $timeFilter group by time($interval) order asc"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "title": "New row",
+      "height": "250px",
+      "editable": true,
+      "collapse": false,
+      "panels": [
+        {
+          "title": "Memory",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "id": 6,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.goodtimes.ip-172-31-26-142_us-west-1_compute_internal.memory.memory-used",
+              "query": "select mean(value) from \"collectd.goodtimes.ip-172-31-26-142_us-west-1_compute_internal.memory.memory-used\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.influxdb.ip-172-31-23-205_us-west-1_compute_internal.memory.memory-used",
+              "query": "select mean(value) from \"collectd.influxdb.ip-172-31-23-205_us-west-1_compute_internal.memory.memory-used\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.statsd.ip-172-31-6-73_us-west-1_compute_internal.memory.memory-used",
+              "query": "select mean(value) from \"collectd.statsd.ip-172-31-6-73_us-west-1_compute_internal.memory.memory-used\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.grafana.ip-172-31-3-90_us-west-1_compute_internal.memory.memory-used",
+              "query": "select mean(value) from \"collectd.grafana.ip-172-31-3-90_us-west-1_compute_internal.memory.memory-used\" where $timeFilter group by time($interval) order asc"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        },
+        {
+          "title": "CPU",
+          "error": false,
+          "span": 6,
+          "editable": true,
+          "type": "graph",
+          "id": 7,
+          "datasource": null,
+          "renderer": "flot",
+          "x-axis": true,
+          "y-axis": true,
+          "y_formats": [
+            "short",
+            "short"
+          ],
+          "grid": {
+            "leftMax": null,
+            "rightMax": null,
+            "leftMin": null,
+            "rightMin": null,
+            "threshold1": null,
+            "threshold2": null,
+            "threshold1Color": "rgba(216, 200, 27, 0.27)",
+            "threshold2Color": "rgba(234, 112, 112, 0.22)"
+          },
+          "lines": true,
+          "fill": 0,
+          "linewidth": 1,
+          "points": false,
+          "pointradius": 5,
+          "bars": false,
+          "stack": false,
+          "percentage": false,
+          "legend": {
+            "show": true,
+            "values": false,
+            "min": false,
+            "max": false,
+            "current": false,
+            "total": false,
+            "avg": false
+          },
+          "nullPointMode": "connected",
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative",
+            "shared": false
+          },
+          "targets": [
+            {
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.goodtimes.ip-172-31-26-142_us-west-1_compute_internal.cpu-0.cpu-user",
+              "query": "select mean(value) from \"collectd.goodtimes.ip-172-31-26-142_us-west-1_compute_internal.cpu-0.cpu-user\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.influxdb.ip-172-31-23-205_us-west-1_compute_internal.cpu-0.cpu-user",
+              "query": "select mean(value) from \"collectd.influxdb.ip-172-31-23-205_us-west-1_compute_internal.cpu-0.cpu-user\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.grafana.ip-172-31-3-90_us-west-1_compute_internal.cpu-0.cpu-user",
+              "query": "select mean(value) from \"collectd.grafana.ip-172-31-3-90_us-west-1_compute_internal.cpu-0.cpu-user\" where $timeFilter group by time($interval) order asc"
+            },
+            {
+              "target": "",
+              "function": "mean",
+              "column": "value",
+              "series": "collectd.statsd.ip-172-31-6-73_us-west-1_compute_internal.cpu-0.cpu-user",
+              "query": "select mean(value) from \"collectd.statsd.ip-172-31-6-73_us-west-1_compute_internal.cpu-0.cpu-user\" where $timeFilter group by time($interval) order asc"
+            }
+          ],
+          "aliasColors": {},
+          "seriesOverrides": [],
+          "links": []
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "type": "timepicker",
+      "collapse": false,
+      "enable": true,
+      "status": "Stable",
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ],
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "now": true,
+      "notice": false
+    }
+  ],
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  },
+  "version": 6,
+  "hideAllLegends": false
+}
