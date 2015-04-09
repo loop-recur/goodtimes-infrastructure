@@ -7,7 +7,7 @@ To select the cluster to affect, set the terraform remote.
 
 ```bash
 # choose deployment environment
-terraform remote -name=looprecur/goodtimes -access-token=xyz
+terraform remote -name=looprecur/gt_development -access-token=xyz
 
 # now retrieve microservice-template modules
 terraform get
@@ -29,11 +29,20 @@ think twice about what will happen.
 
 The name you select for terraform remote indicates which live cluster
 you will modify. You should test all infrastructure changes on
-`looprecur/goodtimes-dev` and only later modify `looprecur/goodtimes`
+`looprecur/gt_development` and only later modify `looprecur/gt_production`
 if everything is good.
 
 ### Goodtimes machine
 
-To build the virtual machine for Wiggum+scheduler+inquisitor copy
-`packer/goodtimes.json` into the microservice-template and use
-Packer. See the readme in that repo for more instructions.
+To deploy new code from
+[looprecur/goodtimes](https://github.com/loop-recur/goodtimes) you
+need to build it into a new machine image for the ec2 cluster. The
+build is controlled by a Packer definition at `packer/goodtimes.json`.
+
+1. Pull down the chef recipe submodules: `git pull --recurse-submodules`
+2. Build the AMI from within the packer directory. `packer build
+-var 'aws_access_key=foo' -var 'aws_secret_key=bar' goodtimes.json`
+3. Update `terraform.tfvars` with the name of the AMI you built.
+
+For more detailed docs about building AMIs see the readme for the
+[microservice-template](https://github.com/begriffs/microservice-template)
