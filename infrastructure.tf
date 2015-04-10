@@ -26,18 +26,6 @@ module "monitoring" {
   subnet_id = "${module.core_vpc.public_subnet_id}"
 }
 
-module "rabbitmq" {
-  source = "github.com/begriffs/microservice-template//terraform/modules/rabbitmq"
-
-  vpc_id = "${module.core_vpc.id}"
-  key_name = "${var.key_name}"
-
-  rabbitmq_ami = "${var.rabbitmq_ami}"
-  sg_consul_id = "${module.core_vpc.sg_consul_id}"
-  sg_ssh_id = "${module.core_vpc.sg_ssh_id}"
-  subnet_id = "${module.core_vpc.private_subnet_id}"
-}
-
 module "statsd" {
   source = "github.com/begriffs/microservice-template//terraform/modules/statsd"
 

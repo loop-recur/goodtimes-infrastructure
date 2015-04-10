@@ -7,7 +7,14 @@ consul_ami = ""
 statsd_ami = ""
 grafana_ami = ""
 influx_ami = ""
-rabbitmq_ami = ""
 goodtimes_ami = ""
 
+goodtimes_db_host = ""
+goodtimes_db_user = ""
+goodtimes_db_pass = ""
+
+slack_app_id = ""
+slack_secret = ""
+
+domain_name = ""
 key_name = ""
