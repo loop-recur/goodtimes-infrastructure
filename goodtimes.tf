@@ -64,3 +64,11 @@ resource "aws_route53_record" "goodtimes-production-subdomains" {
   ttl = "300"
   records = ["${aws_instance.goodtimes.public_ip}"]
 }
+
+resource "aws_route53_record" "goodtimes-support_email" {
+  zone_id = "${aws_route53_zone.production.zone_id}"
+  name = "${var.domain_name}"
+  type = "MX"
+  ttl = "300"
+  records = ["10 mx.hover.com.cust.hostedemail.com"]
+}
