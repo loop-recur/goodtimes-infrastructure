@@ -73,11 +73,16 @@
     "source": "sources/network",
     "destination": "/tmp/network"
   }, {
+    "type": "file",
+    "source": "sources/health-checks.json",
+    "destination": "/tmp/health-checks.json"
+  }, {
     "type": "shell",
     "inline": [
       "sudo sh -c 'echo conf-dir=/etc/dnsmasq.d >> /etc/dnsmasq.conf'",
       "sudo sh -c 'echo \"prepend domain-name-servers 127.0.0.1;\" >> /etc/dhcp/dhclient.conf'",
       "sudo cp /tmp/network /etc/sysconfig/network",
+      "sudo cp /tmp/health-checks.json /etc/consul.d/health-checks.json",
       "sudo sh -c 'echo \"127.0.0.1 self self.localdomain\" >> /etc/hosts'",
       "sudo yum -y install postgresql-devel",
       "curl -sL https://github.com/mietek/halcyon/raw/master/setup.sh | sudo bash /dev/stdin"

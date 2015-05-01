@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "id": "postgrest",
+      "name": "Postgrest API on port 8000",
+      "http": "http://localhost:8000",
+      "interval": "10s",
+      "timeout": "1s"
+    },
+    {
+      "id": "wiggum",
+      "name": "Wiggum on port 3000",
+      "http": "http://localhost:3000",
+      "interval": "10s",
+      "timeout": "1s"
+    }
+  ]
+}

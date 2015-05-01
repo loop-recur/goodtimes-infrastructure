@@ -43,3 +43,12 @@
 [submodule "packer/cookbooks/nginx"]
 	path = packer/cookbooks/nginx
 	url = https://github.com/miketheman/nginx.git
+[submodule "packer/cookbooks/bluepill"]
+	path = packer/cookbooks/bluepill
+	url = https://github.com/opscode-cookbooks/bluepill.git
+[submodule "packer/cookbooks/rsyslog"]
+	path = packer/cookbooks/rsyslog
+	url = https://github.com/opscode-cookbooks/rsyslog.git
+[submodule "packer/cookbooks/ohai"]
+	path = packer/cookbooks/ohai
+	url = https://github.com/opscode-cookbooks/ohai.git
