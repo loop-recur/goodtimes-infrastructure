@@ -36,7 +36,7 @@ resource "aws_instance" "goodtimes" {
       "sudo sh -c 'echo \"/app/bin/postgrest --db-host ${var.goodtimes_db_host} --db-port 5432 --db-name ${var.goodtimes_db_name} --db-user ${var.goodtimes_db_user} --db-pass ${var.goodtimes_db_pass} --db-pool 67 --anonymous ${var.goodtimes_db_user} --port 8000 2>&1 | logger -t postgrest &\" >> /etc/rc.local'",
       "sudo sh -c 'echo -e \"#!/bin/sh\n/app/bin/scheduler\n\" > /etc/cron.daily/scheduler'",
       "sudo chmod a+x /etc/cron.daily/scheduler",
-      "sudo sh -c 'echo \"* * * * 1,2,3,4,5 ec2-user /app/bin/inquisitor\" > /etc/crontab'",
+      "sudo sh -c 'echo \"* * * * * ec2-user /app/bin/inquisitor\" > /etc/crontab'",
 
       "curl -X PUT -d '{\"db_address\":\"http://localhost:8000\",\"slack_secret\":\"${var.slack_secret}\",  \"slack_app_id\": \"${var.slack_app_id}\", \"public_host\": \"http://${var.domain_name}\"}' http://127.0.0.1:8500/v1/kv/gt.wiggum.config",
       "curl -X PUT -d '{\"host\":\"${var.goodtimes_db_host}\", \"port\":5432, \"user\": \"${var.goodtimes_db_user}\", \"pw\": \"${var.goodtimes_db_pass}\", \"db\": \"${var.goodtimes_db_name}\"}' http://127.0.0.1:8500/v1/kv/gt.postgres",
