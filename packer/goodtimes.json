@@ -10,8 +10,8 @@
     "access_key": "{{user `aws_access_key`}}",
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-west-1",
-    "source_ami": "ami-3549a971",
-    "instance_type": "t2.small",
+    "source_ami": "ami-a7e30ce3",
+    "instance_type": "c3.2xlarge",
     "ssh_username": "ec2-user",
     "ami_name": "goodtimes {{timestamp}}",
     "ami_groups": ["all"]
@@ -23,11 +23,13 @@
   }, {
     "type": "shell",
     "inline": [
-      "cp /tmp/deploy-* $HOME/.ssh"
+      "cp /tmp/deploy-* $HOME/.ssh",
+      "chmod 400 $HOME/.ssh/*"
     ]
   }, {
     "type": "shell",
     "inline": [
+      "export HALCYON_NO_PUBLIC_STORAGE=1",
       "export HALCYON_AWS_ACCESS_KEY_ID={{user `aws_access_key`}}",
       "export HALCYON_AWS_SECRET_ACCESS_KEY={{user `aws_secret_key`}}",
       "export HALCYON_S3_ENDPOINT=s3-us-west-1.amazonaws.com",

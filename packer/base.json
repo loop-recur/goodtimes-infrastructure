@@ -11,7 +11,7 @@
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-west-1",
     "source_ami": "ami-4b6f650e",
-    "instance_type": "t2.micro",
+    "instance_type": "c3.2xlarge",
     "ssh_username": "ec2-user",
     "ami_name": "goodtimes {{timestamp}}",
     "ami_groups": ["all"]
@@ -24,6 +24,7 @@
       "recipe[consul::default]",
       "recipe[collectd]",
       "recipe[collectd::attribute_driven]",
+      "recipe[nodejs::default]",
       "recipe[dnsmasq::dns]",
       "recipe[nginx::default]"
     ],

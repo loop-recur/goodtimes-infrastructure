@@ -43,3 +43,12 @@
 [submodule "packer/cookbooks/nginx"]
 	path = packer/cookbooks/nginx
 	url = https://github.com/miketheman/nginx.git
+[submodule "packer/cookbooks/nodejs"]
+	path = packer/cookbooks/nodejs
+	url = git@github.com:redguide/nodejs.git
+[submodule "packer/cookbooks/ark"]
+	path = packer/cookbooks/ark
+	url = git@github.com:burtlo/ark.git
+[submodule "packer/cookbooks/homebrew"]
+	path = packer/cookbooks/homebrew
+	url = git@github.com:opscode-cookbooks/homebrew.git
