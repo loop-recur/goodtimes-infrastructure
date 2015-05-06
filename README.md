@@ -68,3 +68,18 @@ the `terraform.tvfars` file.
    goodtimes instance you should see the instance be modified as well as some
    DNS entries.
 6. Run `terraform apply`
+
+### Other options
+
+#### Building the goodtimes AMI from a custom branch
+
+The AMI creates binaries from [goodtimes](https://github.com/loop-recur/goodtimes).
+When testing changes you will probably want to do QA on a branch on the staging
+environment. Just change `packer/goodtimes.json`:
+
+```diff
+40c40
+< "sudo -E /app/halcyon/halcyon install git@github.com:loop-recur/goodtimes.git",
+---
+> "sudo -E /app/halcyon/halcyon install git@github.com:loop-recur/goodtimes.git#branch",
+```
